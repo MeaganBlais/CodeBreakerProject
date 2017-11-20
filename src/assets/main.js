@@ -6,19 +6,10 @@ let attempt = document.getElementById('attempt');
 function guess() {
     let input = document.getElementById('user-guess');
     //add functionality to guess function here
+    if (answer === "" && attempt === "") {
+        setHiddenFields();
+    }
 }
-
-//implement new functions here
-
-// function setHiddenFields (min, max) {
-//     min = Math.ceil(min);
-//     max = Math.floor(max);
-//     answer = Math.floor(Math.random() * (max - min)) + min;
-//     while (answer.length < 4) {
-
-//     }
-// }
-// setHiddenFields(0, 9999);
 
 function setHiddenFields () {
     let random = Math.floor(Math.random());
@@ -29,3 +20,9 @@ function setHiddenFields () {
     attempt = 0;
     console.log(answer);
 }
+
+function setMessage (msg) {
+    document.getElementById("message").innerHTML = msg;
+}
+
+
