@@ -13,10 +13,10 @@ function guess() {
     } else {
         attempt += 1;
     }
-    if (getResults()) {
+    if (getResults(input)) {
         setMessage("You Win! :)");
         showAnswer(true);
-    } else if (!getResults() && attempt >= 10) {
+    } else if (!getResults(input) && attempt >= 10) {
         setMessage("You Lose! :(");
         showAnswer(false);
         showReplay();
@@ -51,6 +51,7 @@ function validateInput (input) {
 function getResults(input) {
 
     let html = '<div class="row"><span class="col-md-6">' + input + '</span><div class="col-md-6">';
+    let correct = 0;
 
     document.getElementById("results").innerHTML += html;
     
