@@ -2,10 +2,9 @@ let answer = document.getElementById('answer');
 // limit attempt to 4 characters
 let attempt = document.getElementById('attempt');
 
-
 function guess() {
     let input = document.getElementById('user-guess');
-    //add functionality to guess function here
+
     if (answer === "" && attempt === "") {
         setHiddenFields();
     }
@@ -16,10 +15,13 @@ function guess() {
     }
     if (getResults()) {
         setMessage("You Win! :)");
+        showAnswer(true);
     } else if (!getResults() && attempt >= 10) {
         setMessage("You Lose! :(");
+        showAnswer(false);
+        showReplay();
     } else {
-        setMessage("Incorrect, try again.")
+        setMessage("Incorrect, try again.");
     }
 }
 
@@ -41,16 +43,16 @@ function validateInput (input) {
     if (input.length === 4) {
         return true;
     } else {
-        setMessage("Guesses must be exactly 4 characters long.")
+        setMessage("Guesses must be exactly 4 characters long.");
         return false;
     }
 }
 
 function getResults(input) {
-    document.getElementById("results").innerHTML = html;
-    // results.innerHTML += html;
 
     let html = '<div class="row"><span class="col-md-6">' + input + '</span><div class="col-md-6">';
+
+    document.getElementById("results").innerHTML += html;
     
     for(i = 0; i < input.length; i++) {
         if(input.charAt(i) === answer.charAt(i)) {
@@ -71,7 +73,18 @@ function getResults(input) {
     }
 }
 
+function showAnswer (answer) {
+    var element = document.getElementById("code");
+   if (answer === true) {
+    element.classList.add("success");
+   } else if (!answer) {
+    element.classList.add("failure")
+   }
+}
 
-
+function showReplay () {
+    document.getElementById("guessing").style.display = "none";
+    document.getElementById("replay").style.display = "block";
+}
 
 
