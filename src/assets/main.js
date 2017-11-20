@@ -22,7 +22,7 @@ function guess() {
 
 function setHiddenFields () {
     let random = Math.floor(Math.random());
-    while (random.toString().length <= 4) {
+    while (random.toString().length < 4) {
         random = "0" + random.toString();
     }
     answer = random;
